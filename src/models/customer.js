@@ -1,13 +1,11 @@
-'use strict';
+"use strict";
 
 class Customer {
   constructor() {
-    this.customer = {
-      userId: '',
-      name: '',
-      latitude: '',
-      lonngitude: ''
-    };
+    this.userId = "";
+    this.name = "";
+    this.latitude = "";
+    this.longitude = "";
   }
 
   getCustomer() {
@@ -15,7 +13,18 @@ class Customer {
   }
 
   setCustomer(customer) {
-    this.customer = customer;
+    if (customer.hasOwnProperty("user_id")) {
+      this.userId = customer.user_id;
+    }
+    if (customer.hasOwnProperty("name")) {
+      this.name = customer.name;
+    }
+    if (customer.hasOwnProperty("latitude")) {
+      this.latitude = customer.latitude;
+    }
+    if (customer.hasOwnProperty("longitude")) {
+      this.longitude = customer.longitude;
+    }
   }
 }
 
