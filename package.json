@@ -1,0 +1,28 @@
+{
+  "name": "DistanceCalculator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha --recursive",
+    "start": "node ./src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mneres/DistanceCalculator.git"
+  },
+  "author": "Marcelo Neres",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mneres/DistanceCalculator/issues"
+  },
+  "homepage": "https://github.com/mneres/DistanceCalculator#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^5.2.0"
+  }
+}

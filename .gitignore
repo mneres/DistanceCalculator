@@ -1,0 +1,8 @@
+#IDE
+*.vscode
+
+#NODEJS
+npm-debug.log
+
+#PROJECT
+node_modules/
