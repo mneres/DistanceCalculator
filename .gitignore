@@ -6,3 +6,6 @@ npm-debug.log
 
 #PROJECT
 node_modules/
+
+#NPM
+# package-lock.json
