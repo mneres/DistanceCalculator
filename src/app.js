@@ -1,32 +1,20 @@
-const config = require('./configurations/config');
-const CustomerFileReader = require('./components/customerFileReader');
+"use strict";
 
-// let customers = [];
-// request({
-//   url: config.customerListUrl,
-//   method: 'GET',
-//   headers: {
-//     'Accept': 'application/json',
-//     'Accept-Charset': 'utf-8'
-//   }
-// }, function (err, response, customerFile){
-//   if (err) {
-//     // return cb(err);
-//     console.log("error");
-//   }
-//   let customerArray = customerFile.split("\n");
-//   customerArray.map(function(customerRow){
-//     customerJson = JSON.parse(customerRow);
-//     let customer = new Customer();
-//     customer.setCustomer(customerJson);
-//     customers.push(customer);
-//   });
-//   console.log("customers", customers);
-// });
+const config = require("../configurations/config.json");
+const TextFileUtils = require("./components/textFileUtils");
+const DataParser = require("./components/dataParser");
+const calculator = require("./components/calculator");
 
-let fileReader = new CustomerFileReader(config);
-fileReader.getCustomerList().then(
-  function(response){
-    console.log("list", response);
+const textFileUtils = new TextFileUtils();
+const dataParser = new DataParser();
+
+async function formatData(){
+  try{
+    let file = await textFileUtils.readTextFile(config.customerFile);
+    let customerList = await dataParser.strToCustomerArray(file);
+  } catch(ex){
+    throw ex;
   }
-)
+}
+
+formatData();
