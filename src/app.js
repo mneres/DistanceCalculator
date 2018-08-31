@@ -8,13 +8,28 @@ const calculator = require("./components/calculator");
 const textFileUtils = new TextFileUtils();
 const dataParser = new DataParser();
 
-async function formatData(){
+async function sendInvitations(){
+
+  let customerList = [];
+  let invitationList = [];
+
   try{
     let file = await textFileUtils.readTextFile(config.customerFile);
-    let customerList = await dataParser.strToCustomerArray(file);
+    customerList = await dataParser.strToCustomerArray(file);
   } catch(ex){
     throw ex;
   }
+
+  let promises = customerList.map(async (customer) => {
+    let distance = calculator.calculateDistance(customer, config.referencePoint);
+    if(distance <= config.limitDistance) {
+      invitationList.push(customer);
+    }
+  });
+
+  await Promise.all(promises);
+
+  console.log("Invitation List: ", invitationList.length)
 }
 
-formatData();
+sendInvitations();
