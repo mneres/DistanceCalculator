@@ -1,5 +1,6 @@
 {
   "customerFile": "assets/customer.txt",
+  "customerTestFile": "assets/customer_test.txt",
   "referencePoint": {
     "latitude": 53.339428,
     "longitude": -6.257664
