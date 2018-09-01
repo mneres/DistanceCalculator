@@ -1,4 +1,6 @@
-# DistanceCalculator
+# Distance Calculator
+
+This app was developed using Node JS and It has the goal of creating a invitation list based on customer location and a reference point.
 
 ## Requirements
 
