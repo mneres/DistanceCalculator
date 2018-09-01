@@ -2,8 +2,10 @@
 
 ## Requirements
 
-Node version
-Npm
+It's needed to install the following programs in order to compile the project.
+
+* [Node.js - v8.x.x](https://nodejs.org/)
+* [NPM - v5.6.x](https://www.npmjs.com/get-npm)
 
 ## Configuration
 
