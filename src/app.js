@@ -1,35 +1,28 @@
 "use strict";
-
 const config = require("../configurations/config.json");
-const TextFileUtils = require("./components/textFileUtils");
-const DataParser = require("./components/dataParser");
-const calculator = require("./components/calculator");
+const InvitationListGenerator = require("./components/invitationListGenerator");
 
-const textFileUtils = new TextFileUtils();
-const dataParser = new DataParser();
+const params = {
+  textFile: config.customerFile,
+  referencePoint: config.referencePoint,
+  limitDistance: config.limitDistance
+};
 
-async function sendInvitations(){
+const invitationListGenerator = new InvitationListGenerator();
 
-  let customerList = [];
-  let invitationList = [];
-
-  try{
-    let file = await textFileUtils.readTextFile(config.customerFile);
-    customerList = await dataParser.strToCustomerArray(file);
-  } catch(ex){
-    throw ex;
-  }
-
-  let promises = customerList.map(async (customer) => {
-    let distance = calculator.calculateDistance(customer, config.referencePoint);
-    if(distance <= config.limitDistance) {
-      invitationList.push(customer);
+invitationListGenerator
+  .getInvitationList(params)
+  .then(invitationList => {
+    if(invitationList.length === 0){
+      console.log("Info: Invitation list is empty");
+      return;
     }
+    console.log("User ID |", "Name")
+    invitationList.map((customer) => {
+      const spaces = customer.userId > 10 ? "      |" : "       |";
+      console.log(customer.userId + spaces, customer.name);
+    });
+  })
+  .catch(err => {
+    console.log("Error: It was not possible to retrieve invitation list due to ", err.message);
   });
-
-  await Promise.all(promises);
-
-  console.log("Invitation List: ", invitationList.length)
-}
-
-sendInvitations();
