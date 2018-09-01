@@ -10,7 +10,7 @@ const config = require("../../configurations/config");
 
 const TextFileUtils = require("../../src/components/textFileUtils");
 
-describe("readTextFilebyUrl()", () => {
+describe("TextFileUtils->readTextFilebyUrl()", () => {
   it("should throw error", () => {
     const textFileUtils = new TextFileUtils();
     return assert.isRejected(
@@ -27,7 +27,7 @@ describe("readTextFilebyUrl()", () => {
   it("should read text file by url and result not empty", () => {
     const textFileUtils = new TextFileUtils();
     return expect(
-      textFileUtils.readTextFile(config.customerFile)
+      textFileUtils.readTextFile(config.customerTestFile)
     ).to.eventually.not.equal("");
   });
 });
